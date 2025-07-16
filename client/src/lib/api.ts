@@ -67,8 +67,48 @@ export const comicsApi = {
     return response.json();
   },
 
-  generate: async (storyId: number): Promise<Comic> => {
+  generate: async (data: { storyTitle: string; storyDescription: string; characters: Array<{ name: string; appearance: string; personality: string; role: string; }> }) => {
+    const response = await apiRequest("POST", "/api/comics/generate", data);
+    return response.json();
+  },
+
+  generateLegacy: async (storyId: number): Promise<Comic> => {
     const response = await apiRequest("POST", "/api/comics/generate", { storyId });
+    return response.json();
+  },
+
+  generateAndEmail: async (data: {
+    childName: string;
+    childEmail?: string;
+    parentEmail: string;
+    storyTitle: string;
+    storyDescription: string;
+    characters: Array<{
+      name: string;
+      appearance: string;
+      personality: string;
+      role: string;
+    }>;
+  }) => {
+    const response = await apiRequest("POST", "/api/comics/generate-and-email", data);
+    return response.json();
+  },
+
+  emailComic: async (data: {
+    childName: string;
+    childEmail?: string;
+    parentEmail: string;
+    storyTitle: string;
+    storyDescription: string;
+    characters: Array<{
+      name: string;
+      appearance: string;
+      personality: string;
+      role: string;
+    }>;
+    imageUrl: string;
+  }) => {
+    const response = await apiRequest("POST", "/api/comics/email", data);
     return response.json();
   },
 };

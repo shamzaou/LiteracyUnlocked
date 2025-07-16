@@ -5,7 +5,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Download, Share2, RotateCcw, Edit3 } from "lucide-react";
-import ComicEditor from "./comic-editor";
+import ComicEditorWithEmail from "./comic-editor-with-email";
 import type { Story, Character, Comic } from "@shared/schema";
 
 interface ComicGeneratorProps {
@@ -20,7 +20,7 @@ export default function ComicGenerator({ stories, characters }: ComicGeneratorPr
   const { toast } = useToast();
 
   const generateComicMutation = useMutation({
-    mutationFn: comicsApi.generate,
+    mutationFn: comicsApi.generateLegacy,
     onSuccess: (comic) => {
       setGeneratedComic(comic);
       toast({
@@ -269,11 +269,19 @@ export default function ComicGenerator({ stories, characters }: ComicGeneratorPr
             </div>
           </div>
         </div>      )}      {/* Comic Editor */}
-      {showEditor && generatedComic && (
+      {showEditor && generatedComic && selectedStory && (
         <div className="mt-8">
-          <ComicEditor
+          <ComicEditorWithEmail
             imageUrl={generatedComic.imageUrl}
             comicId={generatedComic.id}
+            storyTitle={selectedStory.title}
+            storyDescription={selectedStory.description}
+            characters={storyCharacters.map(char => ({
+              name: char.name,
+              appearance: char.appearance,
+              personality: char.personality,
+              role: char.role
+            }))}
             onSave={handleSaveEditedComic}
             onClose={() => setShowEditor(false)}
           />
