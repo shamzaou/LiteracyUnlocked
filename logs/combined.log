@@ -1,0 +1,25 @@
+2025-07-16 16:42 +00:00: ✅ OpenAI API key found with length: 164
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+TypeError: The "paths[0]" argument must be of type string. Received undefined
+    at new NodeError (node:internal/errors:405:5)
+    at validateString (node:internal/validators:162:11)
+    at Object.resolve (node:path:1115:7)
+    at file:///var/www/LiteracyUnlocked/dist/index.js:360:18
+    at ModuleJob.run (node:internal/modules/esm/module_job:195:25)
+    at ModuleLoader.import (node:internal/modules/esm/loader:337:24)
+    at importModuleDynamicallyWrapper (node:internal/vm/module:432:15)
+2025-07-16 16:55 +00:00: ✅ OpenAI API key found with length: 164
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+TypeError: The "paths[0]" argument must be of type string. Received undefined
+    at new NodeError (node:internal/errors:405:5)
+    at validateString (node:internal/validators:162:11)
+    at Object.resolve (node:path:1115:7)
+    at file:///var/www/LiteracyUnlocked/dist/index.js:360:18
+    at ModuleJob.run (node:internal/modules/esm/module_job:195:25)
+    at ModuleLoader.import (node:internal/modules/esm/loader:337:24)
+    at importModuleDynamicallyWrapper (node:internal/vm/module:432:15)
+2025-07-16 17:00 +00:00: ✅ OpenAI API key found with length: 164
+2025-07-16 17:00 +00:00: 5:00:30 PM [express] serving on port 3001
+2025-07-16 17:01 +00:00: 5:01:41 PM [express] POST /api/comics/generate 201 in 33416ms :: {"success":true,"imageUrl":"https:/…
+2025-07-16 17:03 +00:00: Email sent successfully: <431aae87-3549-f203-388a-a4b1a67aad8d@gmail.com>
+2025-07-16 17:03 +00:00: 5:03:04 PM [express] POST /api/comics/email 200 in 2928ms :: {"success":true,"message":"Comic emaile…

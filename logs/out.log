@@ -1,0 +1,7 @@
+2025-07-16 16:42 +00:00: ✅ OpenAI API key found with length: 164
+2025-07-16 16:55 +00:00: ✅ OpenAI API key found with length: 164
+2025-07-16 17:00 +00:00: ✅ OpenAI API key found with length: 164
+2025-07-16 17:00 +00:00: 5:00:30 PM [express] serving on port 3001
+2025-07-16 17:01 +00:00: 5:01:41 PM [express] POST /api/comics/generate 201 in 33416ms :: {"success":true,"imageUrl":"https:/…
+2025-07-16 17:03 +00:00: Email sent successfully: <431aae87-3549-f203-388a-a4b1a67aad8d@gmail.com>
+2025-07-16 17:03 +00:00: 5:03:04 PM [express] POST /api/comics/email 200 in 2928ms :: {"success":true,"message":"Comic emaile…

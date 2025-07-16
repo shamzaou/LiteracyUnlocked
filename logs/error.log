@@ -1,0 +1,18 @@
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+TypeError: The "paths[0]" argument must be of type string. Received undefined
+    at new NodeError (node:internal/errors:405:5)
+    at validateString (node:internal/validators:162:11)
+    at Object.resolve (node:path:1115:7)
+    at file:///var/www/LiteracyUnlocked/dist/index.js:360:18
+    at ModuleJob.run (node:internal/modules/esm/module_job:195:25)
+    at ModuleLoader.import (node:internal/modules/esm/loader:337:24)
+    at importModuleDynamicallyWrapper (node:internal/vm/module:432:15)
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+TypeError: The "paths[0]" argument must be of type string. Received undefined
+    at new NodeError (node:internal/errors:405:5)
+    at validateString (node:internal/validators:162:11)
+    at Object.resolve (node:path:1115:7)
+    at file:///var/www/LiteracyUnlocked/dist/index.js:360:18
+    at ModuleJob.run (node:internal/modules/esm/module_job:195:25)
+    at ModuleLoader.import (node:internal/modules/esm/loader:337:24)
+    at importModuleDynamicallyWrapper (node:internal/vm/module:432:15)
