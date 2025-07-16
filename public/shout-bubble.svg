@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="80" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Shout bubble with jagged edges -->
+  <path d="M 20 20 L 30 10 L 50 15 L 60 5 L 80 10 L 90 2 L 110 8 L 130 3 L 150 10 L 170 5 L 180 15 L 185 25 L 180 35 L 175 45 L 170 55 L 160 60 L 150 65 L 140 70 L 120 68 L 100 70 L 80 68 L 60 70 L 50 65 L 40 60 L 30 55 L 25 45 L 20 35 L 15 25 Z" fill="white" stroke="#333" stroke-width="3"/>
+  <!-- Jagged tail -->
+  <path d="M 60 65 L 50 85 L 45 75 L 40 90 L 35 80 L 80 70 Z" fill="white" stroke="#333" stroke-width="3" stroke-linejoin="round"/>
+</svg>
