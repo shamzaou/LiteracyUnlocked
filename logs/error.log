@@ -16,3 +16,158 @@ TypeError: The "paths[0]" argument must be of type string. Received undefined
     at ModuleJob.run (node:internal/modules/esm/module_job:195:25)
     at ModuleLoader.import (node:internal/modules/esm/loader:337:24)
     at importModuleDynamicallyWrapper (node:internal/vm/module:432:15)
+2025-07-16 17:50 +00:00: PayloadTooLargeError: request entity too large
+    at readStream (/var/www/LiteracyUnlocked/node_modules/raw-body/index.js:163:17)
+    at getRawBody (/var/www/LiteracyUnlocked/node_modules/raw-body/index.js:116:12)
+    at read (/var/www/LiteracyUnlocked/node_modules/body-parser/lib/read.js:79:3)
+    at jsonParser (/var/www/LiteracyUnlocked/node_modules/body-parser/lib/types/json.js:138:5)
+    at Layer.handle [as handle_request] (/var/www/LiteracyUnlocked/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/var/www/LiteracyUnlocked/node_modules/express/lib/router/index.js:328:13)
+    at /var/www/LiteracyUnlocked/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/www/LiteracyUnlocked/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/www/LiteracyUnlocked/node_modules/express/lib/router/index.js:280:10)
+    at expressInit (/var/www/LiteracyUnlocked/node_modules/express/lib/middleware/init.js:40:5)
+2025-07-16 17:52 +00:00: Failed to generate comic image: PermissionDeniedError: 403 Your organization must be verified to use the model `gpt-image-1`. Please go to: https://platform.openai.com/settings/organization/general and click on Verify Organization. If you just verified, it can take up to 15 minutes for access to propagate.
+    at Function.generate (file:///var/www/LiteracyUnlocked/node_modules/openai/src/core/error.ts:80:14)
+    at OpenAI.makeStatusError (file:///var/www/LiteracyUnlocked/node_modules/openai/src/client.ts:400:28)
+    at OpenAI.makeRequest (file:///var/www/LiteracyUnlocked/node_modules/openai/src/client.ts:616:24)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at generateComicImage (file:///var/www/LiteracyUnlocked/dist/index.js:93:22)
+    at file:///var/www/LiteracyUnlocked/dist/index.js:319:41 {
+  status: 403,
+  headers: HeadersList {
+    cookies: [
+      '__cf_bm=P66Pt1U3MNO9Vkb5UI6_mUZDmcORkWI.4n4d6tkPT.I-1752688344-1.0.1.1-agkzMwjZo92PF9q7oI3OG0noetIRMmgJDZjeyWG85aZhXKdm5dZoizw5eRLWvCtqz4VCB9efHfFIMIfKj9itHDX5DwETOsUOVSGMWI0dTBo; path=/; expires=Wed, 16-Jul-25 18:22:24 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None',
+      '_cfuvid=3lQhHm3zA19TOfeHywg1EIRv1PdjaVNsBVB9YLApu4I-1752688344087-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'
+    ],
+    [Symbol(headers map)]: Map(17) {
+      'date' => [Object],
+      'content-type' => [Object],
+      'transfer-encoding' => [Object],
+      'connection' => [Object],
+      'openai-version' => [Object],
+      'openai-organization' => [Object],
+      'openai-project' => [Object],
+      'x-request-id' => [Object],
+      'openai-processing-ms' => [Object],
+      'strict-transport-security' => [Object],
+      'cf-cache-status' => [Object],
+      'set-cookie' => [Object],
+      'x-content-type-options' => [Object],
+      'server' => [Object],
+      'cf-ray' => [Object],
+      'content-encoding' => [Object],
+      'alt-svc' => [Object]
+    },
+    [Symbol(headers map sorted)]: [
+      [Array], [Array], [Array],
+      [Array], [Array], [Array],
+      [Array], [Array], [Array],
+      [Array], [Array], [Array],
+      [Array], [Array], [Array],
+      [Array], [Array], [Array]
+    ]
+  },
+  requestID: 'req_0b71f11c1eb4eae049e419c521637a22',
+  error: {
+    message: 'Your organization must be verified to use the model `gpt-image-1`. Please go to: https://platform.openai.com/settings/organization/general and click on Verify Organization. If you just verified, it can take up to 15 minutes for access to propagate.',
+    type: 'invalid_request_error',
+    param: null,
+    code: null
+  },
+  code: null,
+  param: null,
+  type: 'invalid_request_error'
+}
+2025-07-16 17:52 +00:00: Comic generation error: Error: Failed to generate comic image: 403 Your organization must be verified to use the model `gpt-image-1`. Please go to: https://platform.openai.com/settings/organization/general and click on Verify Organization. If you just verified, it can take up to 15 minutes for access to propagate.
+    at generateComicImage (file:///var/www/LiteracyUnlocked/dist/index.js:125:11)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at file:///var/www/LiteracyUnlocked/dist/index.js:319:41
+2025-07-16 18:20 +00:00: PayloadTooLargeError: request entity too large
+    at readStream (/var/www/LiteracyUnlocked/node_modules/raw-body/index.js:163:17)
+    at getRawBody (/var/www/LiteracyUnlocked/node_modules/raw-body/index.js:116:12)
+    at read (/var/www/LiteracyUnlocked/node_modules/body-parser/lib/read.js:79:3)
+    at jsonParser (/var/www/LiteracyUnlocked/node_modules/body-parser/lib/types/json.js:138:5)
+    at Layer.handle [as handle_request] (/var/www/LiteracyUnlocked/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/var/www/LiteracyUnlocked/node_modules/express/lib/router/index.js:328:13)
+    at /var/www/LiteracyUnlocked/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/www/LiteracyUnlocked/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/www/LiteracyUnlocked/node_modules/express/lib/router/index.js:280:10)
+    at expressInit (/var/www/LiteracyUnlocked/node_modules/express/lib/middleware/init.js:40:5)
+2025-07-16 18:40 +00:00: ⚠️ Comic image file not found for attachment: null
+2025-07-16 18:46 +00:00: ⚠️ Comic image file not found for attachment: null
+2025-07-16 18:56 +00:00: ⚠️ Comic image file not found for attachment: null
+2025-07-16 19:01 +00:00: ⚠️ Comic image not found in either location: /var/www/LiteracyUnlocked/dist/public/generated-images/comic-1752692162790-q5jvcx.png or /var/www/LiteracyUnlocked/public/generated-images/comic-1752692162790-q5jvcx.png
+2025-07-16 19:01 +00:00: ⚠️ Comic image file not found for attachment: null
+2025-07-16 19:01 +00:00: Email sending failed: Error: Invalid status code 404
+    at ClientRequest.<anonymous> (/var/www/LiteracyUnlocked/node_modules/nodemailer/lib/fetch/index.js:218:23)
+    at ClientRequest.emit (node:events:517:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:700:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17)
+    at TLSSocket.socketOnData (node:_http_client:541:22)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at TLSSocket.Readable.push (node:internal/streams/readable:278:10)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:190:23) {
+  type: 'FETCH',
+  sourceUrl: 'https://literacyunlocked.ae/generated-images/comic-1752692162790-q5jvcx.png',
+  code: 'ESTREAM',
+  command: 'API'
+}
+2025-07-16 19:01 +00:00: Comic email error: Error: Failed to send email: Invalid status code 404
+    at sendComicEmail (file:///var/www/LiteracyUnlocked/dist/index.js:267:11)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at file:///var/www/LiteracyUnlocked/dist/index.js:432:27
+2025-07-16 19:01 +00:00: ⚠️ Comic image not found in either location: /var/www/LiteracyUnlocked/dist/public/generated-images/comic-1752692162790-q5jvcx.png or /var/www/LiteracyUnlocked/public/generated-images/comic-1752692162790-q5jvcx.png
+2025-07-16 19:01 +00:00: ⚠️ Comic image file not found for attachment: null
+2025-07-16 19:01 +00:00: Email sending failed: Error: Invalid status code 404
+    at ClientRequest.<anonymous> (/var/www/LiteracyUnlocked/node_modules/nodemailer/lib/fetch/index.js:218:23)
+    at ClientRequest.emit (node:events:517:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:700:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17)
+    at TLSSocket.socketOnData (node:_http_client:541:22)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at TLSSocket.Readable.push (node:internal/streams/readable:278:10)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:190:23) {
+  type: 'FETCH',
+  sourceUrl: 'https://literacyunlocked.ae/generated-images/comic-1752692162790-q5jvcx.png',
+  code: 'ESTREAM',
+  command: 'API'
+}
+2025-07-16 19:01 +00:00: Comic email error: Error: Failed to send email: Invalid status code 404
+    at sendComicEmail (file:///var/www/LiteracyUnlocked/dist/index.js:267:11)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at file:///var/www/LiteracyUnlocked/dist/index.js:432:27
+2025-07-16 19:01 +00:00: ⚠️ Comic image not found in either location: /var/www/LiteracyUnlocked/dist/public/generated-images/comic-1752692162790-q5jvcx.png or /var/www/LiteracyUnlocked/public/generated-images/comic-1752692162790-q5jvcx.png
+2025-07-16 19:01 +00:00: ⚠️ Comic image file not found for attachment: null
+2025-07-16 19:01 +00:00: Email sending failed: Error: Invalid status code 404
+    at ClientRequest.<anonymous> (/var/www/LiteracyUnlocked/node_modules/nodemailer/lib/fetch/index.js:218:23)
+    at ClientRequest.emit (node:events:517:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:700:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17)
+    at TLSSocket.socketOnData (node:_http_client:541:22)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at TLSSocket.Readable.push (node:internal/streams/readable:278:10)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:190:23) {
+  type: 'FETCH',
+  sourceUrl: 'https://literacyunlocked.ae/generated-images/comic-1752692162790-q5jvcx.png',
+  code: 'ESTREAM',
+  command: 'API'
+}
+2025-07-16 19:01 +00:00: Comic email error: Error: Failed to send email: Invalid status code 404
+    at sendComicEmail (file:///var/www/LiteracyUnlocked/dist/index.js:267:11)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at file:///var/www/LiteracyUnlocked/dist/index.js:432:27
+2025-07-16 19:17 +00:00: ⚠️ Comic image file not found for attachment: null
+2025-07-16 19:48 +00:00: ⚠️ Comic image file not found for attachment: null
+2025-07-16 19:55 +00:00: ⚠️ Comic image file not found for attachment: null
+2025-07-16 19:58 +00:00: ⚠️ Comic image file not found for attachment: null
+2025-07-16 20:04 +00:00: ⚠️ Comic image file not found for attachment: null
+2025-07-16 20:08 +00:00: ⚠️ Comic image file not found for attachment: null
+2025-07-16 20:14 +00:00: ⚠️ Comic image file not found for attachment: null
+2025-07-17 04:32 +00:00: ⚠️ Comic image file not found for attachment: null

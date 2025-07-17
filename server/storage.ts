@@ -10,6 +10,14 @@ import {
   type InsertComic,
   type StoryWithCharacters
 } from "@shared/schema";
+import fs from 'fs';
+import path from 'path';
+import https from 'https';
+import http from 'http';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export interface IStorage {
   // Characters
@@ -150,6 +158,53 @@ export class MemStorage implements IStorage {
     this.comics.set(id, comic);
     return comic;
   }
+}
+
+// Image storage utilities
+export async function downloadImageFromUrl(imageUrl: string, filename: string): Promise<string> {
+  const imagesDir = path.join(__dirname, '..', 'public', 'generated-images');
+  
+  // Create directory if it doesn't exist
+  if (!fs.existsSync(imagesDir)) {
+    fs.mkdirSync(imagesDir, { recursive: true });
+  }
+  
+  const filePath = path.join(imagesDir, filename);
+  
+  return new Promise((resolve, reject) => {
+    const protocol = imageUrl.startsWith('https:') ? https : http;
+    
+    const request = protocol.get(imageUrl, (response) => {
+      if (response.statusCode !== 200) {
+        reject(new Error(`Failed to download image: ${response.statusCode}`));
+        return;
+      }
+      
+      const writeStream = fs.createWriteStream(filePath);
+      response.pipe(writeStream);
+      
+      writeStream.on('finish', () => {
+        writeStream.close();
+        // Return the public URL path
+        const publicUrl = `/generated-images/${filename}`;
+        resolve(publicUrl);
+      });
+      
+      writeStream.on('error', reject);
+    });
+    
+    request.on('error', reject);
+    request.setTimeout(30000, () => {
+      request.destroy();
+      reject(new Error('Download timeout'));
+    });
+  });
+}
+
+export function generateImageFilename(prefix: string = 'comic'): string {
+  const timestamp = Date.now();
+  const random = Math.random().toString(36).substring(2, 8);
+  return `${prefix}-${timestamp}-${random}.png`;
 }
 
 export const storage = new MemStorage();

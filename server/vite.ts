@@ -84,6 +84,13 @@ export function serveStatic(app: Express) {
   
   // Serve the root directory for example_uae.jpeg
   app.use(express.static(path.resolve(__dirname, "..")));
+  
+  // IMPORTANT: Also serve the persistent public directory for generated images
+  const persistentPublicPath = path.resolve(__dirname, "..", "public");
+  if (fs.existsSync(persistentPublicPath)) {
+    app.use(express.static(persistentPublicPath));
+    console.log(`📁 Serving persistent public directory: ${persistentPublicPath}`);
+  }
 
   // fall through to index.html if the file doesn't exist
   app.use("*", (_req, res) => {

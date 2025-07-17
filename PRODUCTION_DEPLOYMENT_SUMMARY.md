@@ -370,4 +370,49 @@ Internet → Nginx (Port 80/443) → Node.js App (Port 3001)
 
 ---
 
-*Last Updated: July 16, 2025*
+## 🔧 Recent Fixes
+
+### Image Editing Issue Resolved ✅
+**Issue**: "Image load error - Could not load the comic image for editing"
+**Root Cause**: OpenAI API returns temporary URLs that expire, making images inaccessible for editing
+**Solution**: 
+- Modified the image generation service to automatically download and store images locally
+- Images are now saved to `/var/www/LiteracyUnlocked/dist/public/generated-images/`
+- Updated Nginx configuration to serve stored images with proper caching
+- Images now have permanent URLs like `/generated-images/comic-timestamp-id.png`
+
+**Technical Details**:
+- Added image download functionality in `server/openai.ts`
+- Images are downloaded immediately after generation from OpenAI
+- Local storage ensures images remain accessible for editing indefinitely
+- Nginx serves images with 1-year cache headers for optimal performance
+
+### Email 413 Error Fixed ✅
+**Issue**: "Failed to send email - 413 Request Entity Too Large"
+**Root Cause**: Both Nginx and Express had body size limits too small for email requests with HD image data
+**Solution**: 
+- Increased Nginx `client_max_body_size` to 50MB for both server-wide and API-specific requests
+- Increased Express `json()` and `urlencoded()` limits to 50MB for large payloads
+- Updated email service to convert relative image URLs to absolute URLs for better email compatibility
+- Emails now include `https://literacyunlocked.ae` prefix for local image URLs
+
+**Technical Details**:
+- Added `client_max_body_size 50M;` to Nginx configuration
+- Added `{ limit: '50mb' }` to Express middleware in `server/index.ts`
+- Modified `server/email.ts` to handle relative URLs properly
+- Email images now use absolute URLs for better email client compatibility
+- Both layers now support HD image data (3MB+ files)
+
+### 504 Gateway Timeout Fixed ✅
+**Issue**: "504 Gateway Time-out" when generating HD quality comics
+**Root Cause**: HD image generation (1024x1792, quality: "hd") takes longer than Nginx's default 60-second timeout
+**Solution**: 
+- Increased Nginx proxy timeouts to 300 seconds (5 minutes) for API routes
+- Maintained 60-second connection timeout for optimal user experience
+- HD image generation now completes successfully in ~55 seconds
+
+**Technical Details**:
+- Updated `proxy_read_timeout` and `proxy_send_timeout` to 300s in Nginx
+- HD images are significantly larger (3.2MB vs 1.7MB for standard quality)
+- Portrait format (1024x1792) provides better comic layout for mobile viewing
+- Timeout settings balanced for performance vs reliability

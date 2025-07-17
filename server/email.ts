@@ -1,4 +1,10 @@
 import nodemailer from "nodemailer";
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export interface ComicEmailData {
   childName: string;
@@ -29,6 +35,77 @@ const createTransporter = () => {
 export async function sendComicEmail(data: ComicEmailData) {
   const transporter = createTransporter();
 
+  // Convert relative URLs to absolute URLs for email compatibility
+  let imageUrl = data.imageUrl;
+  let attachmentPath: string | null = null;
+  
+  if (imageUrl.startsWith('/generated-images/')) {
+    // Extract filename before converting to absolute URL
+    const filename = imageUrl.split('/').pop();
+    imageUrl = `https://literacyunlocked.ae${imageUrl}`;
+    
+    // Set the local file path for attachment - check persistent location first
+    if (filename) {
+      const publicPath = path.join(__dirname, '..', 'public', 'generated-images', filename);
+      const distPath = path.join(__dirname, '..', 'dist', 'public', 'generated-images', filename);
+      
+      // Check persistent location first, then temporary
+      if (fs.existsSync(publicPath)) {
+        attachmentPath = publicPath;
+        console.log(`📎 Using persistent comic image: ${publicPath}`);
+      } else if (fs.existsSync(distPath)) {
+        attachmentPath = distPath;
+        console.log(`📎 Using temporary comic image: ${distPath}`);
+      } else {
+        console.warn(`⚠️ Comic image not found in either location: ${publicPath} or ${distPath}`);
+        attachmentPath = null;
+      }
+    }
+  } else if (imageUrl.startsWith('/')) {
+    // For static files like example images
+    const filename = imageUrl.substring(1); // Remove leading slash
+    imageUrl = `https://literacyunlocked.ae${imageUrl}`;
+    
+    // Check both possible locations for static files
+    const distPath = path.join(__dirname, '..', 'dist', 'public', filename);
+    const publicPath = path.join(__dirname, '..', 'public', filename);
+    
+    if (fs.existsSync(publicPath)) {
+      attachmentPath = publicPath;
+    } else if (fs.existsSync(distPath)) {
+      attachmentPath = distPath;
+    } else {
+      console.warn(`⚠️ Static image not found in either location: ${publicPath} or ${distPath}`);
+      attachmentPath = null;
+    }
+  } else if (imageUrl.startsWith('data:image/')) {
+    // Handle base64 encoded images by saving to file first
+    console.log(`📎 Processing base64 image data for attachment`);
+    try {
+      const base64Data = imageUrl.split(',')[1]; // Remove the data:image/png;base64, prefix
+      const imageFormat = imageUrl.match(/data:image\/([^;]+)/)?.[1] || 'png';
+      const timestamp = Date.now();
+      const filename = `comic-${timestamp}-${Math.random().toString(36).substr(2, 6)}.${imageFormat}`;
+      const tempPath = path.join(__dirname, '..', 'public', 'generated-images', filename);
+      
+      // Ensure directory exists
+      const dir = path.dirname(tempPath);
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+      }
+      
+      // Save base64 data to file
+      fs.writeFileSync(tempPath, base64Data, 'base64');
+      attachmentPath = tempPath;
+      console.log(`📎 Saved base64 image to: ${tempPath}`);
+    } catch (error) {
+      console.error('Failed to save base64 image:', error);
+      attachmentPath = null;
+    }
+  } else {
+    console.log(`⚠️ Unexpected imageUrl format: ${imageUrl}`);
+  }
+
   const htmlContent = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
       <h1 style="color: #333; text-align: center;">🎨 New Comic Created! 🎨</h1>
@@ -54,7 +131,10 @@ export async function sendComicEmail(data: ComicEmailData) {
 
       <div style="text-align: center; margin: 30px 0;">
         <h3 style="color: #333;">Generated Comic</h3>
-        <img src="${data.imageUrl}" alt="Generated Comic" style="max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+        <img src="cid:comic-image" alt="Generated Comic" style="max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+        <p style="color: #6c757d; font-size: 12px; margin-top: 10px;">
+          If you can't see the image above, please check your email attachments.
+        </p>
       </div>
 
       <div style="background-color: #fff3cd; padding: 15px; border-radius: 10px; margin: 20px 0;">
@@ -72,12 +152,35 @@ export async function sendComicEmail(data: ComicEmailData) {
     </div>
   `;
 
-  const mailOptions = {
+  // Prepare attachments array
+  const attachments: any[] = [];
+  
+  // Add the comic image as an attachment if the file exists locally
+  if (attachmentPath && fs.existsSync(attachmentPath)) {
+    console.log(`📎 Adding comic image attachment: ${attachmentPath}`);
+    attachments.push({
+      filename: `${data.storyTitle.replace(/[^a-zA-Z0-9]/g, '_')}_comic.png`,
+      path: attachmentPath,
+      cid: 'comic-image' // This allows us to reference it in HTML with cid:comic-image
+    });
+  } else {
+    console.warn(`⚠️ Comic image file not found for attachment: ${attachmentPath}`);
+    // Fallback: try to use the external URL as attachment (less reliable)
+    if (imageUrl.startsWith('https://literacyunlocked.ae/')) {
+      attachments.push({
+        filename: `${data.storyTitle.replace(/[^a-zA-Z0-9]/g, '_')}_comic.png`,
+        path: imageUrl
+      });
+    }
+  }
+
+  const mailOptions: nodemailer.SendMailOptions = {
     from: process.env.EMAIL_USER,
     to: data.parentEmail,
     cc: [data.childEmail, process.env.ADMIN_EMAIL].filter(Boolean).join(','),
     subject: `🎨 ${data.childName}'s New Comic: "${data.storyTitle}"`,
     html: htmlContent,
+    attachments: attachments
   };
 
   try {
