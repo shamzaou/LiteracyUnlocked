@@ -118,7 +118,7 @@ export async function generateComicImage(request: ComicGenerationRequest): Promi
     - Fun, playful visual style similar to popular children's cartoons
 
     IMPORTANT RESTRICTIONS:
-    - NO dialogue bubbles or speech balloons (these will be added separately)
+    - NO dialogue bubbles or speech balloons
     - NO text or words anywhere in the image
     - Keep all content completely appropriate for 8-10 year olds
     - Make it fun and engaging for Grade 4 students
