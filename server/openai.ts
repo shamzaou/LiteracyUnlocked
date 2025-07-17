@@ -108,20 +108,22 @@ export async function generateComicImage(request: ComicGenerationRequest): Promi
       .join(", ");
 
     const prompt = `
-    Create a single comic page divided into exactly four panels arranged in a 2x2 grid layout. Each panel should be clearly separated and numbered (1, 2, 3, 4) to show the story progression.
+    Create a PORTRAIT-oriented comic page (vertical format, taller than wide) with exactly four rectangular panels arranged in a clear 2x2 grid. Use thick black borders to separate each panel clearly. The story must flow in reading order: TOP LEFT (panel 1), TOP RIGHT (panel 2), BOTTOM LEFT (panel 3), BOTTOM RIGHT (panel 4).
 
-    The comic should be designed specifically for children with:
-    - Bright, cheerful colors that are appealing to kids
-    - Simple, clear artwork that's easy to understand
-    - Friendly, expressive characters with welcoming faces
-    - Clean, uncluttered panel layouts
+    The comic should be designed specifically for Grade 4 children (ages 8-10) with:
+    - Very bright, vibrant colors that grab attention
+    - Large, simple artwork that's easy to see and understand
+    - Big, expressive cartoon-style characters with exaggerated friendly faces
+    - Clear, uncluttered scenes with not too many details
+    - Fun, playful visual style similar to popular children's cartoons
 
     IMPORTANT RESTRICTIONS:
     - NO dialogue bubbles or speech balloons (these will be added separately)
     - NO text or words anywhere in the image
-    - Keep all content completely appropriate for children
-    - Respect UAE cultural values and traditions
-    - Avoid any controversial, scary, or inappropriate elements
+    - Keep all content completely appropriate for 8-10 year olds
+    - Make it fun and engaging for Grade 4 students
+    - Avoid any scary, complex, or mature themes
+    - Focus on simple, positive messages kids can easily understand
 
     Setting and Cultural Elements:
     - Set exclusively in the United Arab Emirates
@@ -129,11 +131,11 @@ export async function generateComicImage(request: ComicGenerationRequest): Promi
     - Incorporate appropriate cultural symbols: date palms, falcons, camels, traditional architecture, UAE flag colors (red, green, white, black)
     - Characters should wear modest, culturally appropriate clothing
 
-    Story Structure:
-    Panel 1: Introduction/setup of the situation
-    Panel 2: Development of the story/problem
-    Panel 3: Action/solution being attempted
-    Panel 4: Resolution/happy ending
+    Story Structure for Grade 4 level:
+    Panel 1: Simple introduction - show the main character and setting
+    Panel 2: Present a basic problem or challenge that kids can relate to
+    Panel 3: Show the character trying to solve the problem (action scene)
+    Panel 4: Happy resolution with a clear, positive lesson
 
     Visual Style Guidelines:
     - Make it colorful and engaging for children
@@ -145,14 +147,17 @@ export async function generateComicImage(request: ComicGenerationRequest): Promi
     Story: "${request.storyTitle}" - ${request.storyDescription}
     Characters: ${characterDescriptions}
 
+    Adjust the story to be simple and relatable for 8-10 year olds, focusing on fun, friendship, and positive experiences.
+
     Remember: This is for children in the UAE, so keep everything positive, educational, and culturally respectful.`;
 
     const response = await openai.images.generate({
       model: "dall-e-3",
       prompt: prompt,
       n: 1,
-      size: "1024x1792",
-      quality: "standard",
+      size: "1792x1024",
+      quality: "hd",
+      style: "vivid",
     });
 
     if (!response.data || response.data.length === 0) {

@@ -171,3 +171,223 @@ TypeError: The "paths[0]" argument must be of type string. Received undefined
 2025-07-16 20:08 +00:00: ⚠️ Comic image file not found for attachment: null
 2025-07-16 20:14 +00:00: ⚠️ Comic image file not found for attachment: null
 2025-07-17 04:32 +00:00: ⚠️ Comic image file not found for attachment: null
+2025-07-17 07:20 +00:00: Failed to generate comic image: BadRequestError: 400 Invalid value: 'high'. Supported values are: 'standard' and 'hd'.
+    at Function.generate (file:///var/www/LiteracyUnlocked/node_modules/openai/src/core/error.ts:72:14)
+    at OpenAI.makeStatusError (file:///var/www/LiteracyUnlocked/node_modules/openai/src/client.ts:400:28)
+    at OpenAI.makeRequest (file:///var/www/LiteracyUnlocked/node_modules/openai/src/client.ts:616:24)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at generateComicImage (file:///var/www/LiteracyUnlocked/dist/index.js:126:22)
+    at file:///var/www/LiteracyUnlocked/dist/index.js:454:41 {
+  status: 400,
+  headers: HeadersList {
+    cookies: [
+      '__cf_bm=KJaDOpJ3QGU3qRPWM783Bk5rRicgFSQOQUy5DjJiti4-1752736818-1.0.1.1-pkfNtFLgNTgm7fyJfIGvMag3ptQqFX9rXNhqWsXsHo2c1U3RmntvErU.WGc2G6UTBpcqeYgjD3kwsjMIo1QsC37k0b8UFMha2nJ_a.hohBI; path=/; expires=Thu, 17-Jul-25 07:50:18 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None',
+      '_cfuvid=8KnSO4qB5a5Nr9vNtLLR03.Msy7jCG_EIoiAXOfwa1Y-1752736818134-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'
+    ],
+    [Symbol(headers map)]: Map(16) {
+      'date' => [Object],
+      'content-type' => [Object],
+      'content-length' => [Object],
+      'connection' => [Object],
+      'openai-version' => [Object],
+      'openai-organization' => [Object],
+      'openai-project' => [Object],
+      'x-request-id' => [Object],
+      'openai-processing-ms' => [Object],
+      'strict-transport-security' => [Object],
+      'cf-cache-status' => [Object],
+      'set-cookie' => [Object],
+      'x-content-type-options' => [Object],
+      'server' => [Object],
+      'cf-ray' => [Object],
+      'alt-svc' => [Object]
+    },
+    [Symbol(headers map sorted)]: [
+      [Array], [Array], [Array],
+      [Array], [Array], [Array],
+      [Array], [Array], [Array],
+      [Array], [Array], [Array],
+      [Array], [Array], [Array],
+      [Array], [Array]
+    ]
+  },
+  requestID: 'req_32565668539d71194cf2c5c8955cb260',
+  error: {
+    message: "Invalid value: 'high'. Supported values are: 'standard' and 'hd'.",
+    type: 'invalid_request_error',
+    param: 'quality',
+    code: 'invalid_value'
+  },
+  code: 'invalid_value',
+  param: 'quality',
+  type: 'invalid_request_error'
+}
+2025-07-17 07:20 +00:00: Comic generation error: Error: Failed to generate comic image: 400 Invalid value: 'high'. Supported values are: 'standard' and 'hd'.
+    at generateComicImage (file:///var/www/LiteracyUnlocked/dist/index.js:159:11)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at file:///var/www/LiteracyUnlocked/dist/index.js:454:41
+2025-07-17 07:20 +00:00: Failed to generate comic image: BadRequestError: 400 Invalid value: 'high'. Supported values are: 'standard' and 'hd'.
+    at Function.generate (file:///var/www/LiteracyUnlocked/node_modules/openai/src/core/error.ts:72:14)
+    at OpenAI.makeStatusError (file:///var/www/LiteracyUnlocked/node_modules/openai/src/client.ts:400:28)
+    at OpenAI.makeRequest (file:///var/www/LiteracyUnlocked/node_modules/openai/src/client.ts:616:24)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at generateComicImage (file:///var/www/LiteracyUnlocked/dist/index.js:126:22)
+    at file:///var/www/LiteracyUnlocked/dist/index.js:454:41 {
+  status: 400,
+  headers: HeadersList {
+    cookies: [
+      '__cf_bm=HR4l8PIDGKavKEM5UFvj8C3NH7F335VhTHRy8_R8II8-1752736825-1.0.1.1-Aftz76fWnt6XqLaAoCiB25tXz3PexzytUPgqHqN3nVPEYqqPm3VwfTa2XfriWVo.yfkdcNczWgdg31pbm.SBU0pxDjMphvI1udBXz7Pu5yc; path=/; expires=Thu, 17-Jul-25 07:50:25 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None',
+      '_cfuvid=tGEakbJSAQR5rbOBjRwBmHS6vNGJgrr.JIID7vzhQHA-1752736825901-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'
+    ],
+    [Symbol(headers map)]: Map(16) {
+      'date' => [Object],
+      'content-type' => [Object],
+      'content-length' => [Object],
+      'connection' => [Object],
+      'openai-version' => [Object],
+      'openai-organization' => [Object],
+      'openai-project' => [Object],
+      'x-request-id' => [Object],
+      'openai-processing-ms' => [Object],
+      'strict-transport-security' => [Object],
+      'cf-cache-status' => [Object],
+      'set-cookie' => [Object],
+      'x-content-type-options' => [Object],
+      'server' => [Object],
+      'cf-ray' => [Object],
+      'alt-svc' => [Object]
+    },
+    [Symbol(headers map sorted)]: [
+      [Array], [Array], [Array],
+      [Array], [Array], [Array],
+      [Array], [Array], [Array],
+      [Array], [Array], [Array],
+      [Array], [Array], [Array],
+      [Array], [Array]
+    ]
+  },
+  requestID: 'req_5ea318bf476bb0fd11941781165608e0',
+  error: {
+    message: "Invalid value: 'high'. Supported values are: 'standard' and 'hd'.",
+    type: 'invalid_request_error',
+    param: 'quality',
+    code: 'invalid_value'
+  },
+  code: 'invalid_value',
+  param: 'quality',
+  type: 'invalid_request_error'
+}
+2025-07-17 07:20 +00:00: Comic generation error: Error: Failed to generate comic image: 400 Invalid value: 'high'. Supported values are: 'standard' and 'hd'.
+    at generateComicImage (file:///var/www/LiteracyUnlocked/dist/index.js:159:11)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at file:///var/www/LiteracyUnlocked/dist/index.js:454:41
+2025-07-17 07:20 +00:00: Failed to generate comic image: BadRequestError: 400 Invalid value: 'high'. Supported values are: 'standard' and 'hd'.
+    at Function.generate (file:///var/www/LiteracyUnlocked/node_modules/openai/src/core/error.ts:72:14)
+    at OpenAI.makeStatusError (file:///var/www/LiteracyUnlocked/node_modules/openai/src/client.ts:400:28)
+    at OpenAI.makeRequest (file:///var/www/LiteracyUnlocked/node_modules/openai/src/client.ts:616:24)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at generateComicImage (file:///var/www/LiteracyUnlocked/dist/index.js:126:22)
+    at file:///var/www/LiteracyUnlocked/dist/index.js:454:41 {
+  status: 400,
+  headers: HeadersList {
+    cookies: [
+      '__cf_bm=riQBbUZYKWP5v8yBPqm4dmB4X2pqBUQUemHdNiUEnQk-1752736848-1.0.1.1-XrLhzuQpyAIUqVqXF7NCXmjP9qJe_AqITxs48tPABY.tZYjWAaBsUXNWnKA6Kbww6WG2pKr_J8SJUnbnyR5neDmedI7O44aJgpld3CtJrtQ; path=/; expires=Thu, 17-Jul-25 07:50:48 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None',
+      '_cfuvid=I9DNJvp1XyDwII._ZwWNhw71QTqUhmZEeO6ChQJ66vQ-1752736848760-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'
+    ],
+    [Symbol(headers map)]: Map(16) {
+      'date' => [Object],
+      'content-type' => [Object],
+      'content-length' => [Object],
+      'connection' => [Object],
+      'openai-version' => [Object],
+      'openai-organization' => [Object],
+      'openai-project' => [Object],
+      'x-request-id' => [Object],
+      'openai-processing-ms' => [Object],
+      'strict-transport-security' => [Object],
+      'cf-cache-status' => [Object],
+      'set-cookie' => [Object],
+      'x-content-type-options' => [Object],
+      'server' => [Object],
+      'cf-ray' => [Object],
+      'alt-svc' => [Object]
+    },
+    [Symbol(headers map sorted)]: [
+      [Array], [Array], [Array],
+      [Array], [Array], [Array],
+      [Array], [Array], [Array],
+      [Array], [Array], [Array],
+      [Array], [Array], [Array],
+      [Array], [Array]
+    ]
+  },
+  requestID: 'req_72483bc3f814a1e35f7c3974825c98a5',
+  error: {
+    message: "Invalid value: 'high'. Supported values are: 'standard' and 'hd'.",
+    type: 'invalid_request_error',
+    param: 'quality',
+    code: 'invalid_value'
+  },
+  code: 'invalid_value',
+  param: 'quality',
+  type: 'invalid_request_error'
+}
+2025-07-17 07:20 +00:00: Comic generation error: Error: Failed to generate comic image: 400 Invalid value: 'high'. Supported values are: 'standard' and 'hd'.
+    at generateComicImage (file:///var/www/LiteracyUnlocked/dist/index.js:159:11)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at file:///var/www/LiteracyUnlocked/dist/index.js:454:41
+2025-07-17 07:29 +00:00: Failed to generate comic image: BadRequestError: 400 Invalid value: 'cartoon'. Supported values are: 'vivid' and 'natural'.
+    at Function.generate (file:///var/www/LiteracyUnlocked/node_modules/openai/src/core/error.ts:72:14)
+    at OpenAI.makeStatusError (file:///var/www/LiteracyUnlocked/node_modules/openai/src/client.ts:400:28)
+    at OpenAI.makeRequest (file:///var/www/LiteracyUnlocked/node_modules/openai/src/client.ts:616:24)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at generateComicImage (file:///var/www/LiteracyUnlocked/dist/index.js:128:22)
+    at file:///var/www/LiteracyUnlocked/dist/index.js:456:41 {
+  status: 400,
+  headers: HeadersList {
+    cookies: [
+      '__cf_bm=wGH2cjtXL4d12l9ln1SbgEZmuqlgKv2rS1_kglQrxbI-1752737355-1.0.1.1-25R6Tb4.dwqjdAB9WkWaeGtJy__9bFxFX.MT9QnzN5LMf4hjn48PSVcHT7inqP0DEa7ZbMgZNdOTVAfmttSWAYu0bgWP8fdRXRGAX5Qy2us; path=/; expires=Thu, 17-Jul-25 07:59:15 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None',
+      '_cfuvid=HuP_on5UB9rwBaI9o4pcrF3sqyxVty69yF6EqtofhwM-1752737355868-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'
+    ],
+    [Symbol(headers map)]: Map(16) {
+      'date' => [Object],
+      'content-type' => [Object],
+      'content-length' => [Object],
+      'connection' => [Object],
+      'openai-version' => [Object],
+      'openai-organization' => [Object],
+      'openai-project' => [Object],
+      'x-request-id' => [Object],
+      'openai-processing-ms' => [Object],
+      'strict-transport-security' => [Object],
+      'cf-cache-status' => [Object],
+      'set-cookie' => [Object],
+      'x-content-type-options' => [Object],
+      'server' => [Object],
+      'cf-ray' => [Object],
+      'alt-svc' => [Object]
+    },
+    [Symbol(headers map sorted)]: [
+      [Array], [Array], [Array],
+      [Array], [Array], [Array],
+      [Array], [Array], [Array],
+      [Array], [Array], [Array],
+      [Array], [Array], [Array],
+      [Array], [Array]
+    ]
+  },
+  requestID: 'req_e13fb062b236ce2a0b2ec2a762aa8d7e',
+  error: {
+    message: "Invalid value: 'cartoon'. Supported values are: 'vivid' and 'natural'.",
+    type: 'invalid_request_error',
+    param: 'style',
+    code: 'invalid_value'
+  },
+  code: 'invalid_value',
+  param: 'style',
+  type: 'invalid_request_error'
+}
+2025-07-17 07:29 +00:00: Comic generation error: Error: Failed to generate comic image: 400 Invalid value: 'cartoon'. Supported values are: 'vivid' and 'natural'.
+    at generateComicImage (file:///var/www/LiteracyUnlocked/dist/index.js:161:11)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at file:///var/www/LiteracyUnlocked/dist/index.js:456:41
